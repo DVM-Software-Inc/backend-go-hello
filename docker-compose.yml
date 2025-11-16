@@ -2,20 +2,20 @@ version: "3.8"
 
 services:
   api:
-    image: ghcr.io/DVM-Software-Inc/backend-go-template:latest
-    container_name: backend-go-template
+    image: ghcr.io/DVM-Software-Inc/backend-go-hello:latest
+    container_name: backend-go-hello
     env_file:
       - .env
     networks:
-      - dvm_traefik
+      - proxy
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend-go-template.rule=Host(`${APP_DOMAIN}`)"
-      - "traefik.http.routers.backend-go-template.entrypoints=websecure"
-      - "traefik.http.routers.backend-go-template.tls.certresolver=letsencrypt"
-      - "traefik.http.services.backend-go-template.loadbalancer.server.port=8080"
+      - "traefik.http.routers.backend-go-hello.rule=Host(`${APP_DOMAIN}`)"
+      - "traefik.http.routers.backend-go-hello.entrypoints=websecure"
+      - "traefik.http.routers.backend-go-hello.tls.certresolver=letsencrypt"
+      - "traefik.http.services.backend-go-hello.loadbalancer.server.port=8080"
 
 networks:
-  dvm_traefik:
+  proxy:
     external: true
