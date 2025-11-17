@@ -8,15 +8,14 @@ jobs:
   build:
     uses: DVM-Software-Inc/infra/.github/workflows/build.yml@main
     with:
-      image_name: backend-go-hello
       environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+      image_name: backend-go-hello
     secrets:
       GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
       GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
 
   deploy:
     needs: build
-    if: github.ref_name == 'dev' || github.ref_name == 'main'
     uses: DVM-Software-Inc/infra/.github/workflows/deploy.yml@main
     with:
       environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
