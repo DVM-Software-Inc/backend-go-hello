@@ -1,6 +1,6 @@
 services:
   api:
-    image: ghcr.io/DVM-Software-Inc/backend-go-hello:latest
+    image: ghcr.io/dvm-software-inc/backend-go-hello:latest
     container_name: backend-go-hello
     env_file:
       - .env
