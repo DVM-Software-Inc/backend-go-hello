@@ -10,9 +10,7 @@ jobs:
     with:
       environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
       image_name: backend-go-hello
-    secrets:
-      GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
-      GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+    secrets: inherit
 
   deploy:
     needs: build
@@ -21,9 +19,4 @@ jobs:
       environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
       compose_file: docker-compose.yml
       image_name: backend-go-hello
-    secrets:
-      GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
-      GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
-      VPS_HOST: ${{ secrets.VPS_HOST }}
-      VPS_USER: ${{ secrets.VPS_USER }}
-      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+    secrets: inherit
