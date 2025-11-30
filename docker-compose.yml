@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     networks:
-      - proxy
+      - dokploy-network
     restart: always
     labels:
       - "traefik.enable=true"
@@ -15,5 +15,5 @@ services:
       - "traefik.http.services.backend-go-hello.loadbalancer.server.port=8080"
 
 networks:
-  proxy:
+  dokploy-network:
     external: true
